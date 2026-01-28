@@ -1,0 +1,135 @@
+{
+    "latex-workshop.latex.outDir": "build",
+    "latex-workshop.latex.recipe.default": "Compile thesis",
+    "latex-workshop.latex.build.forceRecipeUsage": true,
+    "latex-workshop.latex.tools": [
+        {
+            "name": "mkdir-build",
+            "command": "bash",
+            "args": [
+                "-lc",
+                "mkdir -p build build/chap"
+            ]
+        },
+        {
+            "name": "make-doc",
+            "command": "bash",
+            "args": [
+                "-lc",
+                "make doc"
+            ]
+        },
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "env": {
+                "TEXINPUTS": ".:misc:"
+            },
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=build",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "biber",
+            "command": "biber",
+            "env": {
+                "TEXINPUTS": ".:misc:"
+            },
+            "args": [
+                "-l",
+                "zh__pinyin",
+                "--output-safechars",
+                "--input-directory=build",
+                "--output-directory=build",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "copy-pdf",
+            "command": "bash",
+            "args": [
+                "-lc",
+                "cp -f build/%DOCFILE%.pdf %DOCFILE%.pdf"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "Compile thesis",
+            "tools": [
+                "mkdir-build",
+                "xelatex",
+                "biber",
+                "xelatex",
+                "xelatex",
+                "copy-pdf"
+            ]
+        }
+    ],
+    "[windows]": {
+        "latex-workshop.latex.tools": [
+            {
+                "name": "mkdir-build",
+                "command": "cmd",
+                "args": [
+                    "/c",
+                    "if not exist build mkdir build & if not exist build\\chap mkdir build\\chap"
+                ]
+            },
+            {
+                "name": "xelatex",
+                "command": "xelatex",
+                "env": {
+                    "TEXINPUTS": ".;misc;"
+                },
+                "args": [
+                    "-synctex=1",
+                    "-interaction=nonstopmode",
+                    "-file-line-error",
+                    "-output-directory=build",
+                    "%DOC%"
+                ]
+            },
+            {
+                "name": "biber",
+                "command": "biber",
+                "env": {
+                    "TEXINPUTS": ".;misc;"
+                },
+                "args": [
+                    "-l",
+                    "zh__pinyin",
+                    "--output-safechars",
+                    "--input-directory=build",
+                    "--output-directory=build",
+                    "%DOCFILE%"
+                ]
+            },
+            {
+                "name": "copy-pdf",
+                "command": "cmd",
+                "args": [
+                    "/c",
+                    "copy /y build\\%DOCFILE%.pdf %DOCFILE%.pdf"
+                ]
+            }
+        ],
+        "latex-workshop.latex.recipes": [
+            {
+                "name": "Compile thesis",
+                "tools": [
+                    "mkdir-build",
+                    "xelatex",
+                    "biber",
+                    "xelatex",
+                    "xelatex",
+                    "copy-pdf"
+                ]
+            }
+        ]
+    }
+}

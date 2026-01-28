@@ -6,16 +6,11 @@ Source: [CasperVector/pkuthss](https://github.com/CasperVector/pkuthss)
 
 相比于原模板有以下改动：
 
-* 修改了copy.tex的行距
-* 修改了origin.tex的勾选框和行距
+* 保留更轻量的目录结构（无 doc/example）
 * 将make.bat和Makefile中默认编译方式改为xelatex
-* 将Hyperlink的颜色修改为黑色
 * 为目录添加了点线
-* 增加了`nopkumathfont`选项，仅将数学公式字体恢复为默认字体
-* 将页眉修改为“硕士学位论文”（如果需要修改成其他的，参考pkuthss.cls的313行）
-* 修改了封面标题的字体大小
-* 为中英文关键字添加了缩进
-* 将Bibtex模板由CapserVector改为biblatex-gb7714-2015
+* 将Bibtex模板由CasperVector改为biblatex-gb7714-2015
+* 封面图标文件放在cover/目录（pkuthss.cls已适配路径）
 
 ## Environment
 
@@ -46,6 +41,12 @@ Use [MathPix Snip](https://mathpix.com/) to OCR the equations.
 For Windows, run `make.bat doc`.
 
 For Linux/macOS, run `make doc`.
+
+编译中间文件会输出到 `build/`，根目录仅保留 `thesis.pdf`。
+
+如果直接运行 `xelatex`/`biber`，请确保 `TEXINPUTS` 包含 `misc`：
+- macOS/Linux: `.:misc:`
+- Windows: `.;misc;`
 
 ## Reference
 

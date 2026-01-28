@@ -22,7 +22,7 @@
         \ctex_punct_map_bfseries:nn { \CJKrmdefault } { zhhei }
       }
       {
-        \ctex_load_zhmap:nnnn { rm } { zhhei } { zhfs } { zhwindowsfonts }
+        \ctex_load_zhmap:nnnn { rm } { zhhei } { zhfs } { windows }
         \ctex_punct_set:n { windows }
         \ctex_punct_map_family:nn { \CJKrmdefault } { zhsong }
         \ctex_punct_map_bfseries:nn { \CJKrmdefault } { zhhei }
@@ -35,16 +35,54 @@
       }
   }
   {
-    \setCJKmainfont
-      [ BoldFont = SimHei , ItalicFont = [ simkai.ttf ] ] { SimSun }
-    \setCJKsansfont { SimHei }
-    \setCJKmonofont { [ simfang.ttf ] }
-    \setCJKfamilyfont { zhsong }  { SimSun }
-    \setCJKfamilyfont { zhhei }   { SimHei }
-    \setCJKfamilyfont { zhkai }   { [ simkai.ttf ] }
-    \setCJKfamilyfont { zhfs }    { [ simfang.ttf ] }
-    %\setCJKfamilyfont { zhli }    { LiSu }
-    %\setCJKfamilyfont { zhyou }   { YouYuan }
+    \sys_if_platform_windows:TF
+      {
+        \setCJKmainfont
+          [ Path = fonts/ , Extension = .ttf ,
+            BoldFont = SimHei , ItalicFont = SimKai ] { SimSun }
+        \setCJKsansfont [ Path = fonts/ , Extension = .ttf ] { SimHei }
+        \setCJKmonofont [ Path = fonts/ , Extension = .ttf ] { FangSong }
+        \setCJKfamilyfont { zhsong }
+          [ Path = fonts/ , Extension = .ttf ] { SimSun }
+        \setCJKfamilyfont { zhhei }
+          [ Path = fonts/ , Extension = .ttf ] { SimHei }
+        \setCJKfamilyfont { zhkai }
+          [ Path = fonts/ , Extension = .ttf ] { SimKai }
+        \setCJKfamilyfont { zhfs }
+          [ Path = fonts/ , Extension = .ttf ] { FangSong }
+        %\setCJKfamilyfont { zhli }
+        %  [ Path = fonts/ , Extension = .ttf ] { SimLi }
+        %\setCJKfamilyfont { zhyou }
+        %  [ Path = fonts/ , Extension = .ttf ] { SimYou }
+      }
+      {
+        \IfFontExistsTF{STSong}
+          {
+            \setCJKmainfont
+              [ BoldFont = STHeiti , ItalicFont = STKaiti ] { STSong }
+            \setCJKsansfont { STHeiti }
+            \setCJKmonofont { STFangsong }
+            \setCJKfamilyfont { zhsong } { STSong }
+            \setCJKfamilyfont { zhhei }  { STHeiti }
+            \setCJKfamilyfont { zhkai }  { STKaiti }
+            \setCJKfamilyfont { zhfs }   { STFangsong }
+          }
+          {
+            \setCJKmainfont
+              [ Path = fonts/ , Extension = .ttf ,
+                BoldFont = SimHei , ItalicFont = SimKai ] { SimSun }
+            \setCJKsansfont [ Path = fonts/ , Extension = .ttf ] { SimHei }
+            \setCJKmonofont [ Path = fonts/ , Extension = .ttf ] { FangSong }
+            \setCJKfamilyfont { zhsong }
+              [ Path = fonts/ , Extension = .ttf ] { SimSun }
+            \setCJKfamilyfont { zhhei }
+              [ Path = fonts/ , Extension = .ttf ] { SimHei }
+            \setCJKfamilyfont { zhkai }
+              [ Path = fonts/ , Extension = .ttf ] { SimKai }
+            \setCJKfamilyfont { zhfs }
+              [ Path = fonts/ , Extension = .ttf ] { FangSong }
+          }
+      }
   }
 
 \NewDocumentCommand \songti   { } { \CJKfamily { zhsong } }

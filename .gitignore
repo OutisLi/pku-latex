@@ -44,6 +44,10 @@ spine.pdf
 ## Build tool directories for auxiliary files
 # latexrun
 latex.out/
+build/*
+!build/.gitignore
+!build/chap/
+!build/chap/.gitignore
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
@@ -278,4 +282,8 @@ TSWLatexianTemp*
 
 # Code editor files
 .idea
-.vscode
+.vscode/*
+!.vscode/settings.json
+
+._DS_Store
+._*

@@ -18,7 +18,6 @@
 % This work consists of the following files:
 %   pkuthss.cls
 %   pkuthss.def
-%   pkuthss-gbk.def
 %   pkuthss-utf8.def
 %   pkulogo.eps
 %   pkuword.eps
@@ -38,9 +37,7 @@
     \DeclareOption{no#1}{\@nameuse{thss@opt@#1false}}
 }
 % Process the encoding options.
-\newif\ifthss@opt@gbk \thss@opt@gbktrue
-\DeclareOption{GBK}{\thss@opt@gbktrue\PassOptionsToClass{GBK}{ctexbook}}
-\DeclareOption{UTF8}{\thss@opt@gbkfalse\PassOptionsToClass{UTF8}{ctexbook}}
+\DeclareOption{UTF8}{\PassOptionsToClass{UTF8}{ctexbook}}
 % Whether to enable `\Uppercase' (works problematically) in heading marks.
 \thss@int@boolopt{uppermark}{false}
 % Whether to modify fonts according to school regulation.

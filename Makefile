@@ -40,9 +40,7 @@ else
 endif
 
 
-$(OUTDIR):
-	$(MKDIR_BUILD)
-
+# Default target: build the document.
 doc: $(OUTDIR)
 	$(TEXINPUTS_ENV) $(LATEX) $(JOB)
 	$(TEXINPUTS_ENV) $(BIBTEX) $(JOB)
